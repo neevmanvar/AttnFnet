@@ -15,6 +15,21 @@ import torch
 
 
 def load_train_objs(cfg: Config, device='cuda'):
+    """
+    Loads and initializes training objects including datasets, models, and optimizers.
+    
+    Parameters:
+        cfg (Config): The configuration object containing parameters for data, models, and training.
+    
+    Returns:
+        train_ds: Training dataset.
+        val_ds: Validation dataset.
+        gen_model: Generator model (AttnFnet) instance.
+        disc_model: Discriminator model (PatchGAN) instance.
+        gen_optimizer: Optimizer for the generator model.
+        disc_optimizer: Optimizer for the discriminator model.
+    """
+    
     # Load training and validation datasets.
     train_ds = SLPDataset(dataset_path=cfg.data.path, partition="train")
     val_ds = SLPDataset(dataset_path=cfg.data.path, partition="val")

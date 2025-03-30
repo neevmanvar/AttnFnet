@@ -1,3 +1,7 @@
+# Discriminator architecture based on PatchGAN
+# Source: "Image-to-Image Translation with Conditional Adversarial Networks" (Isola et al., 2017)
+# https://arxiv.org/abs/1611.07004
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F

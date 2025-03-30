@@ -10,14 +10,14 @@ DPTranslation
 ├── assets
 │   ├── test_predictions
 │   ├── test_results   
-│   ├── training_predictions
+│   └── training_predictions
 │   
 ├── config
 │    ├── __init__.py
 │    ├── attnfnet_config.py
 │    ├── unet_config.py
 │    ├── test_config.py
-│    ├── paths.py
+│    └── paths.py
 │
 ├── datasets
 │       └── ttv
@@ -30,22 +30,22 @@ DPTranslation
 │                └── val_press_calib_scale.npy
 │       
 ├── losses
-│   └── __init__.py
-│   │   ├── GANLoss.py
-│   │   ├── GANSSIML2Loss.py
-│   │   └── SSIML2Loss.py
-│   │   
-│   ├── synth
-│   │   ├── train_slp_lay_f_1to40_8549.p
-│   │   .
-│   │   └── train_slp_rside_m_71to80_1939.p
-│   │   
-│   ├── synth_depth
-│   │   ├── train_slp_lay_f_1to40_8549_depthims.p
-│   │   .
-│   │   └── train_slp_rside_m_71to80_1939_depthims.p
-│   │   
-│   └── synth_meshes
+│   ├── __init__.py
+│   ├── GANLoss.py
+│   ├── GANSSIML2Loss.py
+│   └── SSIML2Loss.py
+│      
+├── metrics
+│   ├── __init__.py
+│   .
+│   .
+│   └── MeanMPerPixelAcc.py
+│     
+├── model_checkpoints
+│   ├── attnfnet
+│   .
+│   .
+│   └── MeanMPerPixelAcc.py
 │
 ├── docs
 .

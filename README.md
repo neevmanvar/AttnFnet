@@ -1,7 +1,6 @@
 # AttnFnet
 Attention Feature Network, feature aware depth to pressure translation using cGAN training with mixed loss.
 
-'''
 BodyPressure
 ├── data_BP
 │   ├── convnets
@@ -48,10 +47,10 @@ BodyPressure
 │   └── synth_meshes
 │
 ├── docs
-.
-.
+│   └── *(Documentation files and additional resources)*
+│
 └── smpl
     ├── models
     ├── smpl_webuser
     └── smpl_webuser3
-'''
+

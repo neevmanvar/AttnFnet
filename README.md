@@ -4,40 +4,36 @@ Attention Feature Network, feature aware depth to pressure translation using cGA
 
 This repository contains code, data, and models for research on body pressure estimation using deep learning and SMPL-based body modeling. The repository is organized into several directories that hold data sets, trained convolutional network models, SMPL models, and supporting documentation.
 
-'''bash
+```bash
 
-BodyPressure
-├── data_BP
-│   ├── convnets
-│   │   ├── CAL_10665ct_128b_500e_0.0001lr.pt
-│   │   ├── betanet_108160ct_128b_volfrac_500e_0.0001lr.pt
-│   │   ├── resnet34_1_anglesDC_108160ct_128b_x1pm_rgangs_lb_slpb_dpns_rt_100e_0.0001lr.pt
-│   │   └── resnet34_2_anglesDC_108160ct_128b_x1pm_0.5rtojtdpth_depthestin_angleadj_rgangs_lb_lv2v_slpb_dpns_rt_40e_0.0001lr.pt
-│   │
-│   ├── mod1est_real
-│   ├── mod1est_synth
-│   ├── results
-│   ├── SLP
-│   │   └── danaLab
-│   │       ├── 00001
-│   │       .
-│   │       └── 00102
-│   │   
-│   ├── slp_real_cleaned
-│   │   ├── depth_uncover_cleaned_0to102.npy
-│   │   ├── depth_cover1_cleaned_0to102.npy
-│   │   ├── depth_cover2_cleaned_0to102.npy
-│   │   ├── depth_onlyhuman_0to102.npy
-│   │   ├── O_T_slp_0to102.npy
-│   │   ├── slp_T_cam_0to102.npy
-│   │   ├── pressure_recon_Pplus_gt_0to102.npy
-│   │   └── pressure_recon_C_Pplus_gt_0to102.npy
-│   │   
-│   ├── SLP_SMPL_fits
-│   │   └── fits
-│   │       ├── p001
-│   │       .
-│   │       └── p102
+DPTranslation
+├── assets
+│   ├── test_predictions
+│   ├── test_results   
+│   ├── training_predictions
+│   
+├── config
+│    ├── __init__.py
+│    ├── attnfnet_config.py
+│    ├── unet_config.py
+│    ├── test_config.py
+│    ├── paths.py
+│
+├── datasets
+│       └── ttv
+│            └── depth2bp_cleaned_no_KPa
+│                ├── x_ttv.npz
+│                ├── y_ttv.npz
+│                ├── weight_measurements.csv
+│                ├── test_press_calib_scale.npy
+│                ├── train_press_calib_scale.npy
+│                └── val_press_calib_scale.npy
+│       
+├── losses
+│   └── __init__.py
+│   │   ├── GANLoss.py
+│   │   ├── GANSSIML2Loss.py
+│   │   └── SSIML2Loss.py
 │   │   
 │   ├── synth
 │   │   ├── train_slp_lay_f_1to40_8549.p
@@ -58,7 +54,7 @@ BodyPressure
     ├── models
     ├── smpl_webuser
     └── smpl_webuser3
-'''
+```
 
 ## Overview
 

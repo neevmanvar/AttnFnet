@@ -1,8 +1,6 @@
-# AttnFnet
-Attention Feature Network, feature aware depth to pressure translation using cGAN training with mixed loss.
-# BodyPressure Repository
+# Depth to Pressure Translation Repository
 
-This repository contains code, data, and models for research on body pressure estimation using deep learning and SMPL-based body modeling. The repository is organized into several directories that hold data sets, trained convolutional network models, SMPL models, and supporting documentation.
+This repository contains code, data, and models for research on body pressure estimation using deep learning. The repository is organized into several directories containing data sets, trained models, and supporting documentation.
 
 ```bash
 
@@ -61,7 +59,10 @@ DPTranslation
 └── train_unet_ddp.py
 ```
 
-## Overview
+## AttnFnet
+Neevkumar Manavar, Hanno Gerd Meyer, Joachim Waßmuth, Barbara Hammer, Axel Schneider
+
+[Paper] [Project](https://www.sail.nrw/project/care-bed-robotics/) [Dataset](https://web.northeastern.edu/ostadabbas/2019/06/27/multimodal-in-bed-pose-estimation/) [Dataset Cleaned](https://doi.org/10.7910/DVN/ZS7TQS) [Sunthetic Dataset](https://doi.org/10.7910/DVN/C6J1SP)
 
 The **BodyPressure** project is focused on:
 

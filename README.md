@@ -4,9 +4,7 @@ Attention Feature Network, feature aware depth to pressure translation using cGA
 
 This repository contains code, data, and models for research on body pressure estimation using deep learning and SMPL-based body modeling. The repository is organized into several directories that hold data sets, trained convolutional network models, SMPL models, and supporting documentation.
 
----
-
-## Repository Structure
+'''bash
 
 BodyPressure
 ├── data_BP
@@ -60,7 +58,7 @@ BodyPressure
     ├── models
     ├── smpl_webuser
     └── smpl_webuser3
----
+'''
 
 ## Overview
 

@@ -11,12 +11,14 @@ DPTranslation
 │   ├── test_predictions
 │   ├── test_results   
 │   └── training_predictions
+│
 ├── config
 │    ├── __init__.py
 │    ├── attnfnet_config.py
 │    ├── unet_config.py
 │    ├── test_config.py
 │    └── paths.py
+│
 ├── datasets
 │       └── ttv
 │            └── depth2bp_cleaned_no_KPa
@@ -26,11 +28,13 @@ DPTranslation
 │                ├── test_press_calib_scale.npy
 │                ├── train_press_calib_scale.npy
 │                └── val_press_calib_scale.npy       
+│
 ├── losses
 │   ├── __init__.py
 │   ├── GANLoss.py
 │   ├── GANSSIML2Loss.py
 │   └── SSIML2Loss.py   
+│
 ├── metrics
 │   ├── __init__.py
 │   .
@@ -48,6 +52,7 @@ DPTranslation
 │
 ├── pretrained_checkpoints
 │   └── sam_vit_b_01ec64.pth
+│
 ├── runs
 ├── scripts
 ├── util

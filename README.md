@@ -43,17 +43,22 @@ DPTranslation
 │     
 ├── model_checkpoints
 │   ├── attnfnet
-│   .
-│   .
-│   └── MeanMPerPixelAcc.py
+│   └── unet
 │
-├── docs
-.
-.
-└── smpl
-    ├── models
-    ├── smpl_webuser
-    └── smpl_webuser3
+├── models
+│   ├── AttnFnet
+│   ├── discriminator
+│   └── Unet
+│
+├── pretrained_checkpoints
+│   └── sam_vit_b_01ec64.pth
+│
+├── runs
+├── scripts
+├── util
+├── train_attnfnet_ddp.py
+├── train_attnfnet.py
+├── train_unet_ddp.py
 ```
 
 ## Overview

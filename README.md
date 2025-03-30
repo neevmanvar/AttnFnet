@@ -62,7 +62,12 @@ DPTranslation
 ## AttnFnet
 Neevkumar Manavar, Hanno Gerd Meyer, Joachim Waßmuth, Barbara Hammer, Axel Schneider
 
-[Paper] [Project](https://www.sail.nrw/project/care-bed-robotics/) [Dataset](https://web.northeastern.edu/ostadabbas/2019/06/27/multimodal-in-bed-pose-estimation/) [Dataset Cleaned](https://doi.org/10.7910/DVN/ZS7TQS) [Sunthetic Dataset](https://doi.org/10.7910/DVN/C6J1SP)
+[Paper] [[Project](https://www.sail.nrw/project/care-bed-robotics/)] [[Dataset](https://web.northeastern.edu/ostadabbas/2019/06/27/multimodal-in-bed-pose-estimation/)] [[Dataset Cleaned](https://doi.org/10.7910/DVN/ZS7TQS)] [[Sunthetic Dataset](https://doi.org/10.7910/DVN/C6J1SP)]
+<br/><br/>
+<br/><br/>
+![Alt](https://github.com/neevmanvar/AttnFnet/blob/main/assets/figures/AttnFnet_architecture.png"")
+<br/><br/>
+<br/><br/>
 
 The **BodyPressure** project is focused on:
 

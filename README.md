@@ -58,7 +58,7 @@ DPTranslation
 ├── util
 ├── train_attnfnet_ddp.py
 ├── train_attnfnet.py
-├── train_unet_ddp.py
+└── train_unet_ddp.py
 ```
 
 ## Overview

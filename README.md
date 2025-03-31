@@ -53,7 +53,17 @@ AttnFnet
 │
 ├── runs
 ├── scripts
+│   ├── __init__.py
+│   .
+│   .
+│   └── predict.py
+│   
 ├── util
+│   ├── __init__.py
+│   .
+│   .
+│   └── prepare_dataset.py
+│
 ├── train_attnfnet_ddp.py
 ├── train_attnfnet.py
 └── train_unet_ddp.py

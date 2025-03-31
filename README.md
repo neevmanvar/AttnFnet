@@ -62,7 +62,7 @@ DPTranslation
 ## AttnFnet
 Neevkumar Manavar, Hanno Gerd Meyer, Joachim Waßmuth, Barbara Hammer, Axel Schneider
 
-[Paper] [[Project](https://www.sail.nrw/project/care-bed-robotics/)] [[Dataset](https://web.northeastern.edu/ostadabbas/2019/06/27/multimodal-in-bed-pose-estimation/)] [[Dataset Cleaned](https://doi.org/10.7910/DVN/ZS7TQS)] [[Sunthetic Dataset](https://doi.org/10.7910/DVN/C6J1SP)]
+[Paper] [[Project](https://www.sail.nrw/project/care-bed-robotics/)] [[Dataset](https://web.northeastern.edu/ostadabbas/2019/06/27/multimodal-in-bed-pose-estimation/)] [[Dataset Cleaned](https://doi.org/10.7910/DVN/ZS7TQS)] [[Synthetic Dataset](https://doi.org/10.7910/DVN/C6J1SP)]
 
 <p align="center"><img src="https://github.com/neevmanvar/AttnFnet/blob/main/assets/figures/encoding_feature_representation.gif" alt="encoding_token_representation"/></p>
 
@@ -79,6 +79,7 @@ AttnFnet employs transformer layers integrated with convolutional projections to
 <p align="center"> <img src="https://github.com/neevmanvar/AttnFnet/blob/main/assets/figures/PatchGAN_architecture.png" alt="patchgan" width="800"/></p>
 <br/><br/>
 This work utilizes cGAN loss with mixed domain loss to translate depth representation into pressure representation; structural-similarity-index loss is used with L2 norm loss as a mixed domain loss. This work uses the PatchGAN architecture described by Isola et al. to distinguish fake and real images.
+<br/><br/>
 
 ```bash
 @article{mirza2014conditional,
@@ -97,7 +98,6 @@ This work utilizes cGAN loss with mixed domain loss to translate depth represent
 }
 ```
 ## Dataset
-
 - The model is trained and evaluated on a publicly available multimodal lying pose dataset, consisting of depth and pressure images from 102 subjects in diverse lying postures.
 - Dataset details available at:
   - [Original dataset](https://web.northeastern.edu/ostadabbas/2019/06/27/multimodal-in-bed-pose-estimation/)

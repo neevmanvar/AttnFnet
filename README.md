@@ -124,7 +124,16 @@ use command ``` pip install -r requirements.txt ``` to install dependencies
 - In the end pressure values and depth values must be normalized between ```0-1``` and should have 60:20:20 training, validation and test partition with 2745 training images, 900 validation and 945 test images.
 
 ## Training
+#### Distributed Data Parallel Training
+Attnfnet's Distributed data parallel training was built for ```torchrun``` to setup distributed environment variables from the PyTorch. Trining ``` Attnfnet ``` network requires ```attnfnet_config.py``` file provided in ```config``` directory, you can adjust hyperparameters from there. 
 
-to train ``` Attnfnet ``` network, it requires attnfnet_config.py file provided in ```config``` directory, you can adjust hyperparameters from there. Run command ``` python3 -m train_attnfnet_ddp ``` for linux users and ``` python -m train_attnfnet_ddp ``` for windows users. You can overwrite any hyperparameter value provided in ``` attnfnet_config.py ``` file by just writing ``` ++ class.parameter_name ``` for example ``` python3 -m train_attnfnet_ddp ++optimizer.learning_rate=0.0002 ```
+Run command ``` torchrun --standalone --nnodes=1 --nproc-per-node=$NUM_TRAINERS train_attnfnet_ddp.py ``` to train network with distributed data parallel on a single node multi-worker. or ``` torchrun --rdzv-backend=c10d --rdzv-endpoint=localhost:0 --nnodes=1 --nproc-per-node=$NUM_TRAINERS train_attnfnet_ddp.py ``` to train network with stacked single-node multi-worker
+
+You can overwrite any hyperparameter value provided in ``` attnfnet_config.py ``` file by just writing ``` ++ class.parameter_name ``` for example ``` torchrun --standalone --nnodes=1 --nproc-per-node=$NUM_TRAINERS train_attnfnet_ddp.py ++optimizer.learning_rate=0.0002 ```
+
+Use same commands for ```train_unet_ddp.py``` to train ```U-Net``` network.
+
+#### Single node Single Worker Training
+Similar to DDP, you can run ```train_attnfnet.py``` using torchrun by specifying ```$NUM_TRAINERS=1``` or use command ```python3 train_attnfnet.py```
 
 ## Testing

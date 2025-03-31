@@ -4,7 +4,7 @@ This repository contains code, data, and models for research on body pressure es
 
 ```bash
 
-DPTranslation
+AttnFnet
 ├── assets
 │   ├── test_predictions
 │   ├── test_results   
@@ -99,10 +99,26 @@ The model is trained adversarially with a PatchGAN discriminator proposed by Iso
   year={2017}
 }
 ```
-## Dataset
+
+
+## Installation
+The code requires ```python>=3.9``` and ```pytorch>=2.6```. Please follow the instructions here to install both PyTorch and TorchVision dependencies. Installing both PyTorch and TorchVision with CUDA support is strongly recommended.
+
+Clone this repository to get started ```git clone https://github.com/neevmanvar/AttnFnet.git```.
+go to AttnFnet repository
+```cd AttnFnet```
+use command ``` pip install -r requirements.txt ``` to install dependencies
+
+### Dataset Requrements
 - The model is trained and evaluated on a publicly available multimodal lying pose dataset, consisting of depth and pressure images from 102 subjects in diverse lying postures.
 - Dataset details available at:
   - [Original dataset](https://web.northeastern.edu/ostadabbas/2019/06/27/multimodal-in-bed-pose-estimation/)
   - [Cleaned dataset](https://doi.org/10.7910/DVN/ZS7TQS)
   - [Synthetic dataset](https://doi.org/10.7910/DVN/C6J1SP)
+- Download Cleaned depth images created by Henry Clever and use depth_uncover_cleaned_0to102.npy for this project, you can include more cover images too.
+- download original dataset with pressure images, go to its main directory and use script ``` xxxxxx.py ``` to get pre-processed pressure images.
+- current impliment doesn't include body-mass normalization but if you want you can use it.
 
+## Training
+
+## Testing

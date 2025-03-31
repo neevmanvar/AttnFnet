@@ -75,5 +75,4 @@ Pressure injuries significantly impact bedridden patients, leading to severe hea
 <br/><br/>
 ![Alt](https://github.com/neevmanvar/AttnFnet/blob/main/assets/figures/encoding_tokens_representation.gif)
 <br/><br/>
-<img src="https://github.com/neevmanvar/AttnFnet/blob/main/assets/figures/PatchGAN_architecture.png" alt="patchgan" width="400"/>
-
+<p align="center"> <img src="https://github.com/neevmanvar/AttnFnet/blob/main/assets/figures/PatchGAN_architecture.png" alt="patchgan" width="800"/> </p>

@@ -101,57 +101,116 @@ The model is trained adversarially with a PatchGAN discriminator proposed by Iso
 ```
 
 
-## Installation
-The code requires ```python>=3.9``` and ```pytorch>=2.6```. Please follow the instructions here to install both PyTorch and TorchVision dependencies. Installing both PyTorch and TorchVision with CUDA support is strongly recommended.
+## Installation Requirements
+Python Version: ```>= 3.9```
 
-Clone this repository to get started ```git clone https://github.com/neevmanvar/AttnFnet.git```
+PyTorch Version: ```>= 2.6```
 
-Change directory ```cd AttnFnet```
+Note: It is strongly recommended to install PyTorch and TorchVision with CUDA support. Follow the official installation instructions [here](https://pytorch.org/).
 
-use command ``` pip install -r requirements.txt ``` to install dependencies
+## Quick Start
+Clone the repository:
+
+```bash
+git clone https://github.com/neevmanvar/AttnFnet.git
+cd AttnFnet
+```
+
+Install required Python dependencies:
+
+``` bash
+pip install -r requirements.txt 
+```
 
 ### Dataset Requrements
 - The model is trained and evaluated on a publicly available multimodal lying pose dataset, consisting of depth and pressure images from 102 subjects in diverse lying postures.
     - Dataset details available at:
-        - [Original dataset](https://web.northeastern.edu/ostadabbas/2019/06/27/multimodal-in-bed-pose-estimation/)
-        - [Cleaned dataset](https://doi.org/10.7910/DVN/ZS7TQS)
+        - [Multimodal Lying Pose Dataset](https://web.northeastern.edu/ostadabbas/2019/06/27/multimodal-in-bed-pose-estimation/)
+        - [Cleaned Depth Images](https://doi.org/10.7910/DVN/ZS7TQS)
         - [Synthetic dataset](https://doi.org/10.7910/DVN/C6J1SP)
     - Download Cleaned depth images created by Henry Clever and use depth_uncover_cleaned_0to102.npy for this project, you can include more cover images too.
-    - Download original dataset with pressure images, go to its main directory and use script ``` xxxxxx.py ``` to get pre-processed pressure images.
+    - Download original Multimodal Lying Pose Dataset, go to its main directory and use script ``` xxxxxx.py ``` to get pre-processed pressure images.
     - Current implimentation doesn't include body-mass normalization but if you want you can use it.
     - now put files ```x_ttv.npz, y_ttv.npz, weight_measurements.csv, test_press_calib_scale.npy, train_press_calib_scale.npy,``` and ```val_press_calib_scale.npy``` into ``` dataset/ttv/depth2bp_cleaned_no_KPa/ ``` directory
 
-- In the end pressure values and depth values must be normalized between ```0-1``` and should have 60:20:20 training, validation and test partition with 2745 training images, 900 validation and 945 test images.
+- Data must be normalized between `0` and `1` and partitioned into training (60%), validation (20%), and test (20%) subsets with 2745 training images, 900 validation and 945 test images.
 
 ## Training
-#### Distributed Data Parallel Training
-Attnfnet's Distributed data parallel training was built for ```torchrun``` to setup distributed environment variables from the PyTorch. Trining ``` Attnfnet ``` network requires ```attnfnet_config.py``` file provided in ```config``` directory, you can adjust hyperparameters from there. 
+### Distributed Training (DDP)
 
-Run command ``` torchrun --standalone --nnodes=1 --nproc-per-node=$NUM_TRAINERS train_attnfnet_ddp.py ``` to train network with distributed data parallel on a single node multi-worker. or ``` torchrun --rdzv-backend=c10d --rdzv-endpoint=localhost:0 --nnodes=1 --nproc-per-node=$NUM_TRAINERS train_attnfnet_ddp.py ``` to train network with stacked single-node multi-worker
+Attnfnet's Distributed data parallel training was built for `torchrun` to setup distributed environment variables from the PyTorch. Training `Attnfnet` network requires `attnfnet_config.py` file provided in `config` directory, you can adjust hyperparameters from there. 
 
-You can overwrite any hyperparameter value provided in ``` attnfnet_config.py ``` file by just writing ``` ++ class.parameter_name ``` for example ``` torchrun --standalone --nnodes=1 --nproc-per-node=$NUM_TRAINERS train_attnfnet_ddp.py ++optimizer.learning_rate=0.0002 ```
+Use `torchrun` to initiate distributed training:
 
-Use same commands for ```train_unet_ddp.py``` to train ```U-Net``` network.
+```bash
+torchrun --standalone --nnodes=1 --nproc-per-node=$NUM_TRAINERS train_attnfnet_ddp.py
+```
 
-#### Single node Single Worker Training
-Similar to DDP, you can run ```train_attnfnet.py``` using torchrun by specifying ```$NUM_TRAINERS=1``` or use command ```python3 train_attnfnet.py```
+or use stacked single-node multi-worker (not tested)
+
+```bash
+torchrun --rdzv-backend=c10d --rdzv-endpoint=localhost:0 --nnodes=1 --nproc-per-node=$NUM_TRAINERS train_attnfnet_ddp.py
+```
+
+overwrite hyperparameters via CLI (optional):
+
+```bash
+torchrun --standalone --nnodes=1 --nproc-per-node=$NUM_TRAINERS train_attnfnet_ddp.py ++optimizer.learning_rate=0.0002
+```
+
+Use same commands for `train_unet_ddp.py` to train `U-Net` network.
+
+### Single-node Training
+```bash
+python3 train_attnfnet.py
+```
 
 ## Testing
-Testing requires ```test_config.py``` file to run any code. Before metric evaluation, run ```python3 -m scripts.predict``` and ```python3 -m scripts.predict ++data.model_name=unet``` to save model predictions. predictions must be numpy array with shape (945, 1, 27, 64) with values ranging ```0-1```.
+Testing requires ```test_config.py``` file to run any code. 
 
-Run following commands one by one to save metric scores and calbrated scores (in KPa).
+Generate predictions:
+```bash
+python3 -m scripts.predict
+python3 -m scripts.predict ++data.model_name=unet
+```
+predictions must be numpy array with shape (945, 1, 27, 64) with values ranging `0-1`.
 
-```python3 -m scripts.evaluate``` and ```python3 -m scripts.evaluate ++data.model_name=unet```
+Evaluate metrics:
+```bash
+python3 -m scripts.evaluate
+python3 -m scripts.evaluate_depth2bp
+```
 
-```python3 -m scripts.evaluate_depth2bp``` and ```python3 -m scripts.evaluate_depth2bp ++data.model_name=unet```
+```bash
+python3 -m scripts.evaluate ++data.model_name=unet
+python3 -m scripts.evaluate_depth2bp ++data.model_name=unet
+```
 
-it will generate metric scores as well as model's best and worst predictions with metric scores. To evaluate both U-Net and AttnFnet together, you need to use ```evaluate_methods.py``` file.
+Evaluate multiple methods:
+```bash
+python3 evaluate_methods.py
+```
 
-Current repository does not include predictions from BPBnet or BPWnet, but ```evaluate_methods.py``` file contains code to use that networks too. When you don't want to compare BPBnet and BPWnet, remove all BPBnet and BPWnet variables from ```evaluate_methods.py```, it should be obvious in code. If you still struggle then I will include seperate scripts for that too.
+Current repository does not include predictions from BPBnet or BPWnet, but `evaluate_methods.py` file contains code to use that networks too. When you don't want to compare BPBnet and BPWnet, remove all BPBnet and BPWnet variables from `evaluate_methods.py`, it should be obvious in code. If you still struggle then I will include seperate scripts for that too.
 
-If one wants to use BPBnet and BPWnet for comparison, you have to follow instruction on [BodyPressure](https://github.com/Healthcare-Robotics/BodyPressure) repository and train both networks.  You have to save all model predictions by going to ```BodyPressure/networks/evaluate_depthreal_slp.py --> code line 850``` and saving all test results as .npy file. output file must contain pressure values with shape ```(945, 1, 27, 64)``` in absolute pressure 0-100 KPa range. 
+If one wants to use BPBnet and BPWnet for comparison, you have to follow instruction on [BodyPressure](https://github.com/Healthcare-Robotics/BodyPressure) repository and train both networks.  You have to save all model predictions by going to `BodyPressure/networks/evaluate_depthreal_slp.py --> code line 850` and saving all test results as .npy file. output file must contain pressure values with shape `(945, 1, 27, 64)` in absolute pressure 0-100 KPa range. 
 
-If one wants direct arrays then contact me to get direct predictions as well as body-mass normalized test images. save those arrays into ```assets/model_predictions/bpbnet/depth2bp_no_KPa/y_test.npz``` and ```assets/model_predictions/bpbnet/depth2bp_no_KPa/y_pred.npz```, similarly for ```BPWnet```.
+If one wants direct arrays then contact me to get direct predictions as well as body-mass normalized test images. save those arrays into `assets/model_predictions/bpbnet/depth2bp_no_KPa/y_test.npz` and `assets/model_predictions/bpbnet/depth2bp_no_KPa/y_pred.npz`, similarly for `BPWnet`.
 
-All results are saved in ```assets/test_results``` directory.
+Results are stored in `assets/test_results/`.
 
+---
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+
+---
+
+## Contact
+
+**Neevkumar Manavar**  
+Email: [neevkumar.manavar@hsbi.de](mailto:neevkumar.manavar@hsbi.de)  
+GitHub: [neevmanvar](https://github.com/neevmanvar)
+
+Please reach out for assistance or inquiries related to the dataset, model training, or testing procedures.

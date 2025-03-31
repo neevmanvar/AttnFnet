@@ -137,3 +137,21 @@ Use same commands for ```train_unet_ddp.py``` to train ```U-Net``` network.
 Similar to DDP, you can run ```train_attnfnet.py``` using torchrun by specifying ```$NUM_TRAINERS=1``` or use command ```python3 train_attnfnet.py```
 
 ## Testing
+Testing requires ```test_config.py``` file to run any code. Before metric evaluation, run ```python3 -m scripts.predict``` and ```python3 -m scripts.predict ++data.model_name=unet``` to save model predictions. predictions must be numpy array with shape (945, 1, 27, 64) with values ranging ```0-1```.
+
+Run following commands one by one to save metric scores and calbrated scores (in KPa).
+
+```python3 -m scripts.evaluate``` and ```python3 -m scripts.evaluate ++data.model_name=unet```
+
+```python3 -m scripts.evaluate_depth2bp``` and ```python3 -m scripts.evaluate_depth2bp ++data.model_name=unet```
+
+it will generate metric scores as well as model's best and worst predictions with metric scores. To evaluate both U-Net and AttnFnet together, you need to use ```evaluate_methods.py``` file.
+
+Current repository does not include predictions from BPBnet or BPWnet, but ```evaluate_methods.py``` file contains code to use that networks too. When you don't want to compare BPBnet and BPWnet, remove all BPBnet and BPWnet variables from ```evaluate_methods.py```, it should be obvious in code. If you still struggle then I will include seperate scripts for that too.
+
+If one wants to use BPBnet and BPWnet for comparison, you have to follow instruction on [BodyPressure](https://github.com/Healthcare-Robotics/BodyPressure) repository and train both networks.  You have to save all model predictions by going to ```BodyPressure/networks/evaluate_depthreal_slp.py --> code line 850``` and saving all test results as .npy file. output file must contain pressure values with shape ```(945, 1, 27, 64)``` in absolute pressure 0-100 KPa range. 
+
+If one wants direct arrays then contact me to get direct predictions as well as body-mass normalized test images. save those arrays into ```assets/model_predictions/bpbnet/depth2bp_no_KPa/y_test.npz``` and ```assets/model_predictions/bpbnet/depth2bp_no_KPa/y_pred.npz```, similarly for ```BPWnet```.
+
+All results are saved in ```assets/test_results``` directory.
+

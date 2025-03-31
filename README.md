@@ -74,11 +74,14 @@ Pressure injuries significantly impact bedridden patients, leading to severe hea
 
 <img src="https://github.com/neevmanvar/AttnFnet/blob/main/assets/figures/AttnFnet_architecture.png" alt="attnfnet architecture"/>
 
-AttnFnet employs transformer layers integrated with convolutional projections to capture global context and local feature representations. The architecture includes skip connections between encoder and decoder to retain contextual features. The depth image is divided into patches, and conventional projections are obtained and sinosoidal postion embedding is added, all patches then pass through 12 transformer layers with convolutional feed forward, at last encodings pass though bottleneck to reduce computational complexity and decoder up convolute to image space to get pressure projection.
+AttnFnet follows an encoder–decoder structure with skip connections (inspired by U-Net architectures) to preserve spatial details. Uniquely, AttnFNet integrates transformer layers into the network to capture global context. The depth image is first processed by convolutional layers to extract low-level features and progressively encode contextual spatial information. At the transformer block, these features are passed through a self-attention module and a convolutional projection. This transformer block enables the model to learn long-range relationships in the image (for example, relating distant body parts or overall body shape to pressure distribution). A bottleneck operation is performed to reduce computational complexity, then decoder projects encoded features back to image space.
+
 <br/><br/>
 <p align="center"> <img src="https://github.com/neevmanvar/AttnFnet/blob/main/assets/figures/PatchGAN_architecture.png" alt="patchgan" width="800"/></p>
 <br/><br/>
-This work utilizes cGAN loss with mixed domain loss to translate depth representation into pressure representation; structural-similarity-index loss is used with L2 norm loss as a mixed domain loss. This work uses the PatchGAN architecture described by Isola et al. to distinguish fake and real images.
+
+The model is trained adversarially with a PatchGAN discriminator, as used in conditional GAN frameworks for image translation. Method uses 62x62 patch to distinguish between real and fake probabilities maps.
+raining the depth-to-pressure model involves a composite loss function that balances adversarial learning with structural and pixel-wise accuracy. The AttnFNet generator $G$ and PatchGAN discriminator $D$ are optimized in a conditional GAN (cGAN) framework​. This work uses cGAN loss with mixed domain loss to translate depth into pressure images. cGAN loss comes from the original conditional GAN formulation (Mirza and Osindero, 2014) and proposed SSIML2 loss is used along with adversarial loss (more information in the paper).
 <br/><br/>
 
 ```bash

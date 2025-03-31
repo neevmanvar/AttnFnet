@@ -80,8 +80,7 @@ AttnFnet follows an encoder–decoder structure with skip connections (inspired 
 <p align="center"> <img src="https://github.com/neevmanvar/AttnFnet/blob/main/assets/figures/PatchGAN_architecture.png" alt="patchgan" width="800"/></p>
 <br/><br/>
 
-The model is trained adversarially with a PatchGAN discriminator, as used in conditional GAN frameworks for image translation. Method uses 62x62 patch to distinguish between real and fake probabilities maps.
-raining the depth-to-pressure model involves a composite loss function that balances adversarial learning with structural and pixel-wise accuracy. The AttnFNet generator $G$ and PatchGAN discriminator $D$ are optimized in a conditional GAN (cGAN) framework​. This work uses cGAN loss with mixed domain loss to translate depth into pressure images. cGAN loss comes from the original conditional GAN formulation (Mirza and Osindero, 2014) and proposed SSIML2 loss is used along with adversarial loss (more information in the paper).
+The model is trained adversarially with a PatchGAN discriminator proposed by Isola et al., as used in conditional GAN frameworks for image translation. Method uses 62x62 patch to distinguish between real and fake probabilities maps. Training the depth-to-pressure model involves a composite loss function that balances adversarial learning with structural and pixel-wise accuracy. The AttnFNet generator $G$ and PatchGAN discriminator $D$ are optimized in a conditional GAN (cGAN) framework​. This work uses cGAN loss with mixed domain loss to translate depth into pressure images. cGAN loss comes from the original conditional GAN formulation (Mirza and Osindero, 2014) and proposed SSIML2 loss is used along with adversarial loss (more information in the paper).
 <br/><br/>
 
 ```bash

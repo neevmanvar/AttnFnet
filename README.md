@@ -104,24 +104,27 @@ The model is trained adversarially with a PatchGAN discriminator proposed by Iso
 ## Installation
 The code requires ```python>=3.9``` and ```pytorch>=2.6```. Please follow the instructions here to install both PyTorch and TorchVision dependencies. Installing both PyTorch and TorchVision with CUDA support is strongly recommended.
 
-Clone this repository to get started ```git clone https://github.com/neevmanvar/AttnFnet.git```.
+Clone this repository to get started ```git clone https://github.com/neevmanvar/AttnFnet.git```
 
-go to AttnFnet repository
-
-```cd AttnFnet```
+Change directory ```cd AttnFnet```
 
 use command ``` pip install -r requirements.txt ``` to install dependencies
 
 ### Dataset Requrements
 - The model is trained and evaluated on a publicly available multimodal lying pose dataset, consisting of depth and pressure images from 102 subjects in diverse lying postures.
-- Dataset details available at:
-  - [Original dataset](https://web.northeastern.edu/ostadabbas/2019/06/27/multimodal-in-bed-pose-estimation/)
-  - [Cleaned dataset](https://doi.org/10.7910/DVN/ZS7TQS)
-  - [Synthetic dataset](https://doi.org/10.7910/DVN/C6J1SP)
-- Download Cleaned depth images created by Henry Clever and use depth_uncover_cleaned_0to102.npy for this project, you can include more cover images too.
-- download original dataset with pressure images, go to its main directory and use script ``` xxxxxx.py ``` to get pre-processed pressure images.
-- current impliment doesn't include body-mass normalization but if you want you can use it.
+    - Dataset details available at:
+        - [Original dataset](https://web.northeastern.edu/ostadabbas/2019/06/27/multimodal-in-bed-pose-estimation/)
+        - [Cleaned dataset](https://doi.org/10.7910/DVN/ZS7TQS)
+        - [Synthetic dataset](https://doi.org/10.7910/DVN/C6J1SP)
+    - Download Cleaned depth images created by Henry Clever and use depth_uncover_cleaned_0to102.npy for this project, you can include more cover images too.
+    - Download original dataset with pressure images, go to its main directory and use script ``` xxxxxx.py ``` to get pre-processed pressure images.
+    - Current implimentation doesn't include body-mass normalization but if you want you can use it.
+    - now put files ```x_ttv.npz, y_ttv.npz, weight_measurements.csv, test_press_calib_scale.npy, train_press_calib_scale.npy,``` and ```val_press_calib_scale.npy``` into ``` dataset/ttv/depth2bp_cleaned_no_KPa/ ``` directory
+
+- In the end pressure values and depth values must be normalized between ```0-1``` and should have 60:20:20 training, validation and test partition with 2745 training images, 900 validation and 945 test images.
 
 ## Training
+
+to train ``` Attnfnet ``` network, it requires attnfnet_config.py file provided in ```config``` directory, you can adjust hyperparameters from there. Run command ``` python3 -m train_attnfnet_ddp ``` for linux users and ``` python -m train_attnfnet_ddp ``` for windows users. You can overwrite any hyperparameter value provided in ``` attnfnet_config.py ``` file by just writing ``` ++ class.parameter_name ``` for example ``` python3 -m train_attnfnet_ddp ++optimizer.learning_rate=0.0002 ```
 
 ## Testing

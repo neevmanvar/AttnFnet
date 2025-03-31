@@ -105,8 +105,11 @@ The model is trained adversarially with a PatchGAN discriminator proposed by Iso
 The code requires ```python>=3.9``` and ```pytorch>=2.6```. Please follow the instructions here to install both PyTorch and TorchVision dependencies. Installing both PyTorch and TorchVision with CUDA support is strongly recommended.
 
 Clone this repository to get started ```git clone https://github.com/neevmanvar/AttnFnet.git```.
+
 go to AttnFnet repository
+
 ```cd AttnFnet```
+
 use command ``` pip install -r requirements.txt ``` to install dependencies
 
 ### Dataset Requrements

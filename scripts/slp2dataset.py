@@ -154,7 +154,6 @@ print("depth array shape: ", depth_arr.shape)
 print("pressure array shape: ", pressure_arr.shape)
 print("pressure calibration shape", pm_all.shape)
 
-
 # Apply calibration adjustments
 pm_adjust_mm = [12, -35]
 pm_adjust_cm = [int(-round(mm / 10.)) for mm in pm_adjust_mm]
@@ -207,9 +206,9 @@ train_calib = pm_all[:train_index].reshape(-1, 1)
 val_calib = pm_all[train_index:val_index].reshape(-1, 1)
 test_calib = pm_all[val_index:].reshape(-1, 1)
 print("train calib scale shape, val calib scale shape, test calib scale shape", train_calib.shape, val_calib.shape, test_calib.shape)
-np.save("train_press_calib_scale.npy", train_calib)
-np.save("val_press_calib_scale.npy", val_calib)
-np.save("test_press_calib_scale.npy", test_calib)
+np.save(f"{npz_data_dir}/train_press_calib_scale.npy", train_calib)
+np.save(f"{npz_data_dir}/val_press_calib_scale.npy", val_calib)
+np.save(f"{npz_data_dir}/test_press_calib_scale.npy", test_calib)
 
 # Display header and save dataframe
 names_df.head()

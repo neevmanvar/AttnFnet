@@ -138,10 +138,26 @@ pip install -r requirements.txt
         - [Multimodal Lying Pose Dataset](https://web.northeastern.edu/ostadabbas/2019/06/27/multimodal-in-bed-pose-estimation/)
         - [Cleaned Depth Images](https://doi.org/10.7910/DVN/ZS7TQS)
         - [Synthetic dataset](https://doi.org/10.7910/DVN/C6J1SP)
-    - Download Cleaned depth images created by Henry Clever and use depth_uncover_cleaned_0to102.npy for this project, you can include more cover images too.
-    - Download original Multimodal Lying Pose Dataset, go to its main directory and use script ``` xxxxxx.py ``` to get pre-processed pressure images.
-    - Current implimentation doesn't include body-mass normalization but if you want you can use it.
-    - now put files ```x_ttv.npz, y_ttv.npz, weight_measurements.csv, test_press_calib_scale.npy, train_press_calib_scale.npy,``` and ```val_press_calib_scale.npy``` into ``` dataset/ttv/depth2bp_cleaned_no_KPa/ ``` directory
+
+  - Download original Multimodal Lying Pose Dataset, go to its main directory and run script `slp2dataset.py` to get pre-processed pressure images and raw depth images as input.
+  ```bash
+  SLP
+  ├── danaLab
+  ├── simLab
+  ├── README.md   
+  └── slp2dataset.py
+  ```
+  - When using normalization, you will see maximum pressure and depth value which can be use to upscale into calibrated pressure values along with pressure calibration scale (use if necessary in `evaluate_depth2bp.py`).
+  - ignore `x_ttv.npz` generated from `slp2dataset.py` 
+  - Download Cleaned depth images created by Henry Clever and use depth_uncover_cleaned_0to102.npy, copy it into your choice of directory with following structure and run `save_cleaned_depth.py` to save cleaned uncover depth images and use generated `x_ttv.npz` file for this project.
+  ```bash
+  Rootdir
+  ├── depth_uncover_cleaned_0to102.npy
+  ├── save_cleaned_depth.py
+  └── cleaned_depth_images  
+        └── x_ttv.npz  (created by this script)
+  ```
+  - now put files `x_ttv.npz, y_ttv.npz, weight_measurements.csv, test_press_calib_scale.npy, train_press_calib_scale.npy,``` and ```val_press_calib_scale.npy``` into ``` dataset/ttv/depth2bp_cleaned_no_KPa/ ` directory
 
 - Data must be normalized between `0` and `1` and partitioned into training (60%), validation (20%), and test (20%) subsets with 2745 training images, 900 validation and 945 test images.
 
@@ -201,7 +217,7 @@ Evaluate multiple methods:
 python3 evaluate_methods.py
 ```
 
-Current repository does not include predictions from BPBnet or BPWnet, but `evaluate_methods.py` file contains code to use that networks too. When you don't want to compare `BPBnet` and `BPWnet`, remove all `BPBnet` and `BPWnet` variables from `evaluate_methods.py`, it should be obvious in code. If you still struggle then I will include seperate scripts for that too.
+Current repository does not include predictions from `BPBnet` or `BPWnet`, but `evaluate_methods.py` file contains code to use that networks too. When you don't want to compare `BPBnet` and `BPWnet`, remove all `BPBnet` and `BPWnet` variables from `evaluate_methods.py`, it should be obvious in code. If you still struggle then I will include seperate scripts for that too.
 
 If one wants to use `BPBnet` and `BPWnet` for comparison, you have to follow instruction on [BodyPressure](https://github.com/Healthcare-Robotics/BodyPressure) repository and train both networks.  You have to save all model predictions by going to `BodyPressure/networks/evaluate_depthreal_slp.py --> code line 850` and saving all test results as .npy file. output file must contain pressure values with shape `(945, 1, 27, 64)` in absolute pressure `0-100 KPa` range. 
 

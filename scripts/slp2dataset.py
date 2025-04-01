@@ -190,6 +190,13 @@ y_train = pressure_filtered_arr[:train_index*45]
 y_val = pressure_filtered_arr[train_index*45:val_index*45]
 y_test = pressure_filtered_arr[val_index*45:test_index*45]
 
+f = open(f"{npz_data_dir}Scaling_factors_global.txt", "w")
+f.write('\n')
+f.write("depth array factor = " + str(depth_max))
+f.write('\n')
+f.write("pressure array factor = " + str(press_max))
+f.close()
+
 print("shape, min max after normalized x_train: ", x_train.shape, np.min(x_train), np.max(x_train))
 print("shape, min max after normalized x_val: ", x_val.shape, np.min(x_val), np.max(x_val))
 print("shape, min max after normalized x_test: ", x_test.shape, np.min(x_test), np.max(x_test))
@@ -212,7 +219,7 @@ np.save(f"{npz_data_dir}/test_press_calib_scale.npy", test_calib)
 
 # Display header and save dataframe
 names_df.head()
-names_df.to_csv('Dataframe.csv', index=False)
+names_df.to_csv(f'{npz_data_dir}Dataframe.csv', index=False)
 
 # Save weight calculations to CSV
 avg_weight_diff = np.mean(avg_weight_diff_list)

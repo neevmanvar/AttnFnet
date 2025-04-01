@@ -157,7 +157,7 @@ pip install -r requirements.txt
   └── cleaned_depth_images  
         └── x_ttv.npz  (created by this script)
   ```
-  - now put files `x_ttv.npz, y_ttv.npz, weight_measurements.csv, test_press_calib_scale.npy, train_press_calib_scale.npy,``` and ```val_press_calib_scale.npy``` into ``` dataset/ttv/depth2bp_cleaned_no_KPa/ ` directory
+  - now put files `x_ttv.npz, y_ttv.npz, weight_measurements.csv, test_press_calib_scale.npy, train_press_calib_scale.npy,` and `val_press_calib_scale.npy` into ` dataset/ttv/depth2bp_cleaned_no_KPa/ ` directory
 
 - Data must be normalized between `0` and `1` and partitioned into training (60%), validation (20%), and test (20%) subsets with 2745 training images, 900 validation and 945 test images.
 

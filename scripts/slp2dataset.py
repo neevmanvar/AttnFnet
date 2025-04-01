@@ -9,6 +9,11 @@ import numpy as np
 import pandas as pd
 
 # Function: Apply filtering, calibration, and normalization to pressure mat data
+# Source: https://github.com/Healthcare-Robotics/BodyPressure
+# Function: get filtered pressure arrays
+# License: MIT
+# Taken from BodyPressure repository
+# Copyright (c) Meta Platforms, Inc. and affiliates.
 def get_filtered_pm(Arr, pm_adjust_cm, weights, save_KPa=False, use_filter=False, NORM_INDIVIDUAL=False):
     """
     Preprocess pressure mat data by cropping, smoothing, scaling, and optionally converting units.

@@ -96,7 +96,7 @@ class compare_model_predictions():
         """
         if self.fig_initialized:
             self.close_fig()
-        grid_spec = dict(wspace=-0.3, hspace=0.05)
+        grid_spec = dict(wspace=0.1, hspace=0.05)
         self.build_figure(n_rows=n_rows, figsize=(5, n_rows * 1.7), gridspec_kw=grid_spec, dpi=300)
         if index_list is not None and len(index_list) != n_rows:
             raise ValueError("length of index list must be same as number of rows")
@@ -109,7 +109,7 @@ class compare_model_predictions():
                 index = index_list[i]
             # Order: Input image, predictions from each model, ground truth.
             element_list = [self.x_tests[index]] + [y_pred[index] for y_pred in self.y_preds] + [self.y_tests[index]]
-            sub_title_list = ["Depth Input"] + [model_name + " pred." for model_name in self.model_list] + ["Ref. PImg"]
+            sub_title_list = ["Depth Input"] + [model_name for model_name in self.model_list] + ["Ref. PImg"]
             for j in range(self.n_cols):
                 self.axes[i, j].imshow(element_list[j], cmap='jet')
                 self.axes[i, j].set_axis_off()
@@ -493,10 +493,17 @@ class compare_model_predictions():
                 patch.set(facecolor='white')    
             self.axes[j].set_ylabel(short_metric_name + " (unit)")
             self.axes[j].ticklabel_format(axis='y', style='sci', scilimits=(0, 0))
-            self.axes[j].set_xticks(range(1, len(score_list) + 1), x_axis_titles, rotation=45, ha='right')
+            self.axes[j].set_xticks(range(1, len(score_list) + 1), x_axis_titles, rotation=45, ha='right', fontsize=6)
+
+            if short_metric_name=="FID":
+                self.axes[j].set_ylim((0, 4))
+            elif short_metric_name=="MSE":
+                self.axes[j].set_ylim((0, 0.7e-2))
+
             j += 1
         plt.subplots_adjust(bottom=0.25)
-    
+
+
     def calculate_histogram(self, image, channels=None, bins=180, value_range=(0.0, 1.0)):
         """
         Calculate histograms for the image channels.
@@ -609,7 +616,7 @@ class compare_model_predictions():
         else:
             y_preds = calibrated_y_preds
             y_test = calibrated_y_tests
-
+        
         suppine_deviations_list = []
         leftside_deviations_list = []
         rightside_deviations_list = []
@@ -628,7 +635,7 @@ class compare_model_predictions():
             rd = np.mean(np.abs(rightside_y_test - r), axis=0)
 
             if Filter_block_size is not None:
-                if calibrated_y_tests is None:
+                if calibrated_y_tests is None:  
                     rows, cols = y_test.shape[1:3]
                 else:
                     rows, cols = y_test[count].shape[1:3]

@@ -217,7 +217,7 @@ Evaluate multiple methods:
 python3 evaluate_methods.py
 ```
 
-Current repository does not include predictions from `BPBnet` or `BPWnet`, but `evaluate_methods.py` file contains code to use that networks too. When you don't want to compare `BPBnet` and `BPWnet`, remove all `BPBnet` and `BPWnet` variables from `evaluate_methods.py`, it should be obvious in code. If you still struggle then I will include seperate scripts for that too.
+Current repository does not include predictions from `ViT-MLP`, `BPBnet` or `BPWnet`, but `evaluate_methods.py` file contains code to use that networks too. When you don't want to compare `ViT-MLP`, `BPBnet`, and `BPWnet`, remove all `ViT-MLP`, `BPBnet`, and `BPWnet` variables from `evaluate_methods.py`, it should be obvious in code. If you still struggle then I will include seperate scripts for that too.
 
 If one wants to use `BPBnet` and `BPWnet` for comparison, you have to follow instruction on [BodyPressure](https://github.com/Healthcare-Robotics/BodyPressure) repository and train both networks.  You have to save all model predictions by going to `BodyPressure/networks/evaluate_depthreal_slp.py --> code line 850` and saving all test results as .npy file. output file must contain pressure values with shape `(945, 1, 27, 64)` in absolute pressure `0-100 KPa` range. 
 

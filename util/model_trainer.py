@@ -8,7 +8,7 @@ import os
 import time
 from util.manage_snapshot import load_snapshot, save_snapshot
 import sys
-from util.model_callbacks import ModelSanityCheck, SaveModelHistory, ModelEncodingToken
+from util.model_callbacks import ModelSanityCheck, ModelEncodingToken
 from torch.utils.tensorboard import SummaryWriter
 from datetime import datetime
 from torchmetrics.image import StructuralSimilarityIndexMeasure

@@ -129,22 +129,22 @@ def my_hydra_app(cfg: Config) -> None:
             # except for error metrics or FID (where lower is better).
             if "Error" not in metric_name and "FrechetInceptionDistance" not in metric_name and "FID" not in metric_name:
                 # Best prediction is where the metric score is maximum.
-                best_pred_index = [np.where(metrics_scores[metric_name] == np.max(metrics_scores[metric_name]))[0][0]]
+                best_pred_index = (np.where(metrics_scores[metric_name] == np.max(metrics_scores[metric_name]))[0][0])
                 best_metric_score[metric_name] = np.max(metrics_scores[metric_name])
                 best_metric_pred[metric_name] = [x_test[best_pred_index], y_test[best_pred_index], y_pred[best_pred_index]]
                 
                 # Worst prediction is where the metric score is minimum.
-                worst_pred_index = [np.where(metrics_scores[metric_name] == np.min(metrics_scores[metric_name]))[0][0]]
+                worst_pred_index = (np.where(metrics_scores[metric_name] == np.min(metrics_scores[metric_name]))[0][0])
                 worst_metric_pred[metric_name] = [x_test[worst_pred_index], y_test[worst_pred_index], y_pred[worst_pred_index]]
                 worst_metric_score[metric_name] = np.min(metrics_scores[metric_name])
             else:
                 # For error metrics and FID, lower scores are considered better.
-                best_pred_index = [np.where(metrics_scores[metric_name] == np.min(metrics_scores[metric_name]))[0][0]]
+                best_pred_index = (np.where(metrics_scores[metric_name] == np.min(metrics_scores[metric_name]))[0][0])
                 # Note: There is an update to best_metric_score twice in the code; the final value will be np.min.
                 best_metric_score[metric_name] = np.min(metrics_scores[metric_name])
                 best_metric_pred[metric_name] = [x_test[best_pred_index], y_test[best_pred_index], y_pred[best_pred_index]]
                 
-                worst_pred_index = [np.where(metrics_scores[metric_name] == np.max(metrics_scores[metric_name]))[0][0]]
+                worst_pred_index = (np.where(metrics_scores[metric_name] == np.max(metrics_scores[metric_name]))[0][0])
                 worst_metric_pred[metric_name] = [x_test[worst_pred_index], y_test[worst_pred_index], y_pred[worst_pred_index]]
                 worst_metric_score[metric_name] = np.max(metrics_scores[metric_name])
 

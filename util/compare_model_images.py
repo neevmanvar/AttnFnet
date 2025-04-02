@@ -614,20 +614,24 @@ class compare_model_predictions():
         leftside_deviations_list = []
         rightside_deviations_list = []
 
-        suppine_y_test, leftside_y_test, rightside_y_test = self.get_posture_arrays(y_test)
+        if calibrated_y_tests is None:
+            suppine_y_test, leftside_y_test, rightside_y_test = self.get_posture_arrays(y_test)
         count = 0
         for y_pred in y_preds:
             s, l, r = self.get_posture_arrays(y_pred)
             
             if calibrated_y_tests is not None:
-                suppine_y_test, leftside_y_test, rightside_y_test = self.get_posture_arrays(calibrated_y_tests[count])
+                suppine_y_test, leftside_y_test, rightside_y_test = self.get_posture_arrays(y_test[count])
 
             sd = np.mean(np.abs(suppine_y_test - s), axis=0)
             ld = np.mean(np.abs(leftside_y_test - l), axis=0)
             rd = np.mean(np.abs(rightside_y_test - r), axis=0)
 
             if Filter_block_size is not None:
-                rows, cols = y_test.shape[1:3]
+                if calibrated_y_tests is None:
+                    rows, cols = y_test.shape[1:3]
+                else:
+                    rows, cols = y_test[count].shape[1:3]
                 num_blocks_row = rows // Filter_block_size
                 num_blocks_col = cols // Filter_block_size
                 

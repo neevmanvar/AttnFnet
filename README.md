@@ -223,6 +223,11 @@ If one wants to use `BPBnet` and `BPWnet` for comparison, you have to follow ins
 
 If one wants direct arrays then contact me to get direct predictions as well as body-mass normalized test images. save those arrays into `assets/model_predictions/bpbnet/depth2bp_no_KPa/y_test.npz` and `assets/model_predictions/bpbnet/depth2bp_no_KPa/y_pred.npz`, similarly for `BPWnet`.
 
+To use ViT-MLP model use following command:
+```bash
+torchrun --standalone --nnodes=1 --nproc-per-node=$NUM_TRAINERS train_attnfnet_ddp.py ++data.model_name=vitmlp ++gen_model.use_mlp=True
+```
+
 Results are stored in `assets/test_results/`.
 
 ---

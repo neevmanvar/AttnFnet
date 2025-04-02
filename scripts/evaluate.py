@@ -109,7 +109,7 @@ def my_hydra_app(cfg: Config) -> None:
                 avg_metrics_scores[metric_name] = np.asarray(metric.compute().item()).tolist()
             else:
                 # For other metrics, compute the average score.
-                avg_metrics_scores[metric_name] = get_avg_metric_scores(metric, y_test, y_pred).tolist()
+                avg_metrics_scores[metric_name] = np.mean(metrics_scores[metric_name]).tolist()
             
             # Compute the standard deviation of the metric scores.
             std_metrics_scores[metric_name] = get_std_metric_scores(metric, y_test, y_pred).tolist()

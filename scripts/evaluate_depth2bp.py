@@ -41,7 +41,6 @@ def my_hydra_app(cfg: Config) -> None:
     # Initialize directories and configuration-related paths.
     hd = HandleTestDir(cfg=cfg, clear_dirs=cfg.data.clear)
     dataset_dir = hd.get_dataset_dir()
-    train_config_file = hd.get_train_config()
     prediction_array_path = hd.get_model_predictions_path()
     result_dir = hd.get_model_results_dir()
     random_pred_dir = hd.get_random_pred_dir()

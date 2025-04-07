@@ -74,7 +74,9 @@ SAVE_KPA = False
 
 # Load dataset directory
 DIR_NAME = 'danaLab'
-ids = sorted(os.listdir(DIR_NAME))[:-11]
+ids = sorted(entry for entry in os.listdir(DIR_NAME) if os.path.isdir(os.path.join(DIR_NAME, entry)))
+print("length of ids: ", len(ids)) # must be 102
+print("ids: ", ids)    # must be 1 to 102
 
 # Create DataFrame containing paths to depth, pressure, and calibration data
 names_df = pd.DataFrame({

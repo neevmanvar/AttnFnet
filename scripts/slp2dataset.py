@@ -75,7 +75,7 @@ SAVE_KPA = False
 # Load dataset directory
 DIR_NAME = 'danaLab'
 ids = sorted(os.listdir(DIR_NAME))[:-11]
-ids = ids[:4]
+
 # Create DataFrame containing paths to depth, pressure, and calibration data
 names_df = pd.DataFrame({
     'ids': ids,
@@ -162,6 +162,7 @@ print("pressure calibration shape", pm_all.shape)
 # Apply calibration adjustments
 pm_adjust_mm = [12, -35]
 pm_adjust_cm = [int(-round(mm / 10.)) for mm in pm_adjust_mm]
+weights = np.repeat(weights, 45)
 
 pressure_filtered, press_scale_fact = get_filtered_pm(pressure_arr, pm_adjust_cm, weights, SAVE_KPA, USE_FILTER)
 press_max = np.max(pressure_filtered)

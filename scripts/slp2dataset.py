@@ -162,9 +162,9 @@ print("pressure calibration shape", pm_all.shape)
 # Apply calibration adjustments
 pm_adjust_mm = [12, -35]
 pm_adjust_cm = [int(-round(mm / 10.)) for mm in pm_adjust_mm]
-weights = np.repeat(weights, 45)
+weights_arr = np.repeat(weights, 45)
 
-pressure_filtered, press_scale_fact = get_filtered_pm(pressure_arr, pm_adjust_cm, weights, SAVE_KPA, USE_FILTER)
+pressure_filtered, press_scale_fact = get_filtered_pm(pressure_arr, pm_adjust_cm, weights_arr, SAVE_KPA, USE_FILTER)
 press_max = np.max(pressure_filtered)
 pressure_filtered_arr = np.expand_dims(pressure_filtered / press_max, axis=3)
 print("shape, min max after normalized pressure array: ", pressure_filtered_arr.shape, np.min(pressure_filtered_arr), np.max(pressure_filtered_arr))

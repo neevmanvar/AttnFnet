@@ -186,7 +186,7 @@ torchrun --standalone --nnodes=1 --nproc-per-node=$NUM_TRAINERS train_attnfnet_d
 
 Use same commands for `train_unet_ddp.py` to train `U-Net` network.
 
-### Single-node Training
+### Single-node single worker Training
 ```bash
 python3 train_attnfnet.py
 ```

@@ -1,7 +1,6 @@
-from torch import nn
 import torch.optim as optim
 import hydra
-from config.attnfnet_config import Config
+from config.unet_config import Config
 from models.Unet.unet import Unet
 from models.discriminator.patchgan import PatchGAN
 from util.prepare_dataset import SLPDataset

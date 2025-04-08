@@ -205,11 +205,13 @@ Evaluate metrics:
 ```bash
 python3 -m scripts.evaluate
 python3 -m scripts.evaluate_depth2bp
+python3 -m scripts.evaluate_pose
 ```
 
 ```bash
 python3 -m scripts.evaluate ++data.model_name=unet
 python3 -m scripts.evaluate_depth2bp ++data.model_name=unet
+python3 -m scripts.evaluate_pose ++data.model_name=unet
 ```
 
 Evaluate multiple methods:

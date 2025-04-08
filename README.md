@@ -132,7 +132,7 @@ Install required Python dependencies:
 pip install -r requirements.txt 
 ```
 
-### Dataset Requrements
+### Dataset Requirements
 - The model is trained and evaluated on a publicly available multimodal lying pose dataset, consisting of depth and pressure images from 102 subjects in diverse lying postures.
     - Dataset details available at:
         - [Multimodal Lying Pose Dataset](https://web.northeastern.edu/ostadabbas/2019/06/27/multimodal-in-bed-pose-estimation/)

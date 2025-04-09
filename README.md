@@ -1,3 +1,5 @@
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/license/mit)  [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15174067.svg)](https://doi.org/10.5281/zenodo.15174067)
+
 # Depth to Pressure Translation Repository
 
 This repository contains code, data, and models for research on body pressure estimation using deep learning. The repository is organized into several directories containing data sets, trained models, and supporting documentation.

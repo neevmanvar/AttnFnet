@@ -39,7 +39,7 @@ AttnFnet
 │   ├── __init__.py
 │   .
 │   .
-│   └── MeanMPerPixelAcc.py
+│   └── MeanPerPixelAcc.py
 │     
 ├── model_checkpoints
 │   ├── attnfnet

@@ -75,7 +75,7 @@ AttnFnet
 ## AttnFnet
 Neevkumar Manavar, Dr. Hanno Gerd Meyer, Prof. Dr. Joachim Waßmuth, Prof. Dr. Barbara Hammer, Prof. Dr. Axel Schneider
 
-[Paper] [[Project](https://www.sail.nrw/project/care-bed-robotics/)] [[Dataset](https://web.northeastern.edu/ostadabbas/2019/06/27/multimodal-in-bed-pose-estimation/)] [[Dataset Cleaned](https://doi.org/10.7910/DVN/ZS7TQS)] [[Synthetic Dataset](https://doi.org/10.7910/DVN/C6J1SP)]
+[Paper] [[Project](https://www.sail.nrw/project/care-bed-robotics/)] [[Dataset](https://ostadabbas.sites.northeastern.edu/slp-dataset-for-multimodal-in-bed-pose-estimation-3/)] [[Dataset Cleaned](https://doi.org/10.7910/DVN/ZS7TQS)] [[Synthetic Dataset](https://doi.org/10.7910/DVN/C6J1SP)]
 
 <p align="center"><img src="https://github.com/neevmanvar/AttnFnet/blob/main/assets/figures/encoding_feature_representation.gif" alt="encoding_token_representation"/></p>
 
@@ -138,7 +138,7 @@ pip install -r requirements.txt
 ### Dataset Requirements
 - The model is trained and evaluated on a publicly available multimodal lying pose dataset, consisting of depth and pressure images from 102 subjects in diverse lying postures.
     - Dataset details available at:
-        - [Multimodal Lying Pose Dataset](https://web.northeastern.edu/ostadabbas/2019/06/27/multimodal-in-bed-pose-estimation/)
+        - [Multimodal Lying Pose Dataset](https://ostadabbas.sites.northeastern.edu/slp-dataset-for-multimodal-in-bed-pose-estimation-3/)
         - [Cleaned Depth Images](https://doi.org/10.7910/DVN/ZS7TQS)
         - [Synthetic dataset](https://doi.org/10.7910/DVN/C6J1SP)
 

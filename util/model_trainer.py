@@ -146,7 +146,7 @@ class DDPTrainer:
             source = source.to(self.gpu_id)
             targets = targets.to(self.gpu_id)
             self._run_batch(source, targets)
-            if step_count % 200 == 0 and self.gpu_id == 0:
+            if step_count % (len(self.train_data)//10) == 0 and self.gpu_id == 0:
                 self.sanity.forward(self.gen_model, step=step_count, epoch=epoch, save_batch_dir=True)
 
             last_gen_loss = self.running_gen_loss / b_sz  # Loss per batch.
@@ -372,7 +372,7 @@ class Trainer:
             source = source.to(self.device)
             targets = targets.to(self.device)
             self._run_batch(source, targets)
-            if step_count % 200 == 0:
+            if step_count % (len(self.train_data)//10) == 0:
                 self.sanity.forward(self.gen_model, step=step_count, epoch=epoch, save_batch_dir=True)
             
             last_gen_loss = self.running_gen_loss / b_sz  # loss per batch

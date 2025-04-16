@@ -7,12 +7,12 @@ import os
 @dataclass
 class Data:
     data_name:str = "depth2bp_cleaned_no_KPa"
-    path: str = os.path.join("datasets/ttv", data_name).replace("\\","/")
+    path: str = os.path.join("datasets/ttv", "${data.data_name}").replace("\\","/")
     trainsplit: float = 0.6
     model_name: str = "unet"
     train_pred_batch_idx: int = 28
-    train_pred_epoch_dir:str = os.path.join("assets/training_predictions", model_name, data_name, "on_epoch_predictions").replace("\\","/")
-    train_pred_batch_dir:str = os.path.join("assets/training_predictions", model_name, data_name, "on_batch_predictions").replace("\\","/")
+    train_pred_epoch_dir:str = os.path.join("assets/training_predictions", "${data.model_name}", "${data.data_name}", "on_epoch_predictions").replace("\\","/")
+    train_pred_batch_dir:str = os.path.join("assets/training_predictions", "${data.model_name}", "${data.data_name}", "on_batch_predictions").replace("\\","/")
 
 @dataclass
 class GenModel:
@@ -40,7 +40,7 @@ class Trainer:
     max_epochs: int =  93
     batchsize: int =  1
     save_every: int = 1
-    snapshot_path: str = os.path.join("model_checkpoints", Data.model_name, Data.data_name, "snapshot.pth").replace("\\","/")
+    snapshot_path: str = os.path.join("model_checkpoints", "${data.model_name}", "${data.data_name}", "snapshot.pth").replace("\\","/")
 
 @dataclass
 class Config:

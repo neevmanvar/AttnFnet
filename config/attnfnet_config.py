@@ -7,12 +7,12 @@ import os
 @dataclass
 class Data:
     data_name:str = "depth2bp_cleaned_no_KPa"
-    path: str = os.path.join("datasets/ttv", data_name).replace("\\","/")
+    path: str = os.path.join("datasets/ttv", "${data.data_name}").replace("\\","/")
     trainsplit: float = 0.6
     model_name: str = "attnfnet"
     train_pred_batch_idx: int = 1# 28
-    train_pred_epoch_dir:str = os.path.join("assets/training_predictions", model_name, data_name, "on_epoch_predictions").replace("\\","/")
-    train_pred_batch_dir:str = os.path.join("assets/training_predictions", model_name, data_name, "on_batch_predictions").replace("\\","/")
+    train_pred_epoch_dir:str = os.path.join("assets/training_predictions", "${data.model_name}", "${data.data_name}", "on_epoch_predictions").replace("\\","/")
+    train_pred_batch_dir:str = os.path.join("assets/training_predictions", "${data.model_name}", "${data.data_name}", "on_batch_predictions").replace("\\","/")
     clear:bool = False
 
 @dataclass
@@ -23,7 +23,7 @@ class GenModel:
     depth: int = 12        
     num_heads: int = 12
     global_attn_indexes: Tuple = (2, 5, 8, 11) # (0,1,2,3,4,5,6,7,8,9,10,11,12) # (2, 5, 8, 11)
-    skip_connection_numbers: Tuple = (6, 8, 10) # 6,8,10 normally 7,9,11
+    skip_connection_numbers: Tuple = (6, 8, 10) # 7,9,11
     image_size: int = 512
     patch_size: int = 16
     mlp_ratio: float = 4.0
@@ -59,7 +59,7 @@ class Trainer:
     save_every: int = 1
     pretrained: bool = True
     pretrained_ckpt: str = "sam_vit_b_01ec64.pth"
-    snapshot_path: str = os.path.join("model_checkpoints", Data.model_name, Data.data_name, "snapshot.pth").replace("\\","/")
+    snapshot_path: str = os.path.join("model_checkpoints", "${data.model_name}", "${data.data_name}", "snapshot.pth").replace("\\","/")
 
 @dataclass
 class Config:

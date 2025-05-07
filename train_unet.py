@@ -38,7 +38,7 @@ def load_train_objs(cfg: Config, device='cuda'):
 
     return train_ds, val_ds, gen_model, disc_model, gen_optimizer, disc_optimizer
 
-@hydra.main(version_base=None, config_name="config")
+@hydra.main(version_base=None, config_name="unet_config")
 def my_hydra_app(cfg: Config)->None:
     cuda_available = torch.cuda.is_available()
     print("CUDA available:", cuda_available)

@@ -13,6 +13,7 @@ class Data:
     train_pred_batch_idx: int = 28
     train_pred_epoch_dir:str = os.path.join("assets/training_predictions", "${data.model_name}", "${data.data_name}", "on_epoch_predictions").replace("\\","/")
     train_pred_batch_dir:str = os.path.join("assets/training_predictions", "${data.model_name}", "${data.data_name}", "on_batch_predictions").replace("\\","/")
+    clear:bool = False
 
 @dataclass
 class GenModel:

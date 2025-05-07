@@ -133,7 +133,7 @@ def my_hydra_app(cfg: Config) -> None:
         cfg (Config): The configuration object loaded by Hydra.
     """
     # Set up and manage the training directories based on the configuration
-    hd = HandleTrainingDir(cfg, clear_dirs=cfg.data.clear)
+    hd = HandleTrainingDir(cfg, clear_dirs=cfg.data.clear_dir)
     
     # Clear CUDA cache to free up GPU memory
     torch.cuda.empty_cache()

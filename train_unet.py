@@ -49,7 +49,7 @@ def my_hydra_app(cfg: Config)->None:
     
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"current device: {device}")
-    hd = HandleTrainingDir(cfg)
+    hd = HandleTrainingDir(cfg, clear_dirs=cfg.data.clear)
     train_ds, val_ds, gen_model, disc_model, gen_optimizer, disc_optimizer = load_train_objs(cfg, device = device)
     train_data = prepare_dataloader(dataset=train_ds, is_distributed=False, batch_size=cfg.trainer.batchsize)
     val_data = prepare_dataloader(dataset=val_ds, is_distributed=False, batch_size=1)

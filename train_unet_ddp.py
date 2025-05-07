@@ -100,7 +100,7 @@ def my_hydra_app(cfg: Config) -> None:
                       training parameters, and more.
     """
     # Set up the training directories as specified in the configuration.
-    hd = HandleTrainingDir(cfg)
+    hd = HandleTrainingDir(cfg, clear_dir=cfg.data.clear_dir)
     
     # Clear CUDA cache to free up memory.
     torch.cuda.empty_cache()

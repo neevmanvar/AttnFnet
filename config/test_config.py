@@ -7,7 +7,7 @@ import os
 @dataclass
 class Data:
     data_name:str = "depth2bp_cleaned_no_KPa"
-    path: str = os.path.join("datasets/ttv", data_name).replace("\\","/")
+    path: str = os.path.join("datasets/ttv", "${data.data_name}").replace("\\","/")
     trainsplit: float = 0.6
     model_name: str = "attnfnet"
     clear: bool = False

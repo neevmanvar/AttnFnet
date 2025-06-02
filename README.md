@@ -115,7 +115,7 @@ The model is trained adversarially with a PatchGAN discriminator proposed by Iso
 
 
 ## Installation Requirements
-Python Version: ```>= 3.9```
+Python Version: ```>= 3.10```
 
 PyTorch Version: ```>= 2.6```
 

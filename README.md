@@ -75,7 +75,7 @@ AttnFnet
 ## AttnFnet
 Neevkumar Manavar, Dr. Hanno Gerd Meyer, Prof. Dr. Joachim Waßmuth, Prof. Dr. Barbara Hammer, Prof. Dr. Axel Schneider
 
-[Paper] [[Project](https://www.sail.nrw/project/care-bed-robotics/)] [[Dataset](https://ostadabbas.sites.northeastern.edu/slp-dataset-for-multimodal-in-bed-pose-estimation-3/)] [[Dataset Cleaned](https://doi.org/10.7910/DVN/ZS7TQS)] [[Synthetic Dataset](https://doi.org/10.7910/DVN/C6J1SP)]
+[[Paper](https://doi.org/10.3389/fmedt.2025.1621922)] [[Project](https://www.sail.nrw/project/care-bed-robotics/)] [[Dataset](https://ostadabbas.sites.northeastern.edu/slp-dataset-for-multimodal-in-bed-pose-estimation-3/)] [[Dataset Cleaned](https://doi.org/10.7910/DVN/ZS7TQS)] [[Synthetic Dataset](https://doi.org/10.7910/DVN/C6J1SP)]
 
 <p align="center"><img src="https://github.com/neevmanvar/AttnFnet/blob/main/assets/figures/encoding_feature_representation.gif" alt="encoding_token_representation"/></p>
 
